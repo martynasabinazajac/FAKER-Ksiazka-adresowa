@@ -1,16 +1,16 @@
 class Contact_list:
 
     
-    def __init__(self, name, surname, company, position, e_mail):
+    def __init__(self, name, surname, company, position, email):
         self.name=name
         self.surname=surname
         self.company=company
         self.position=position
-        self.e_mail=e_mail
+        self.email=email
 
 
     def __str__(self):
-        return f'Name:{self.name}, Surname:{self.surname},e-mail:<{self.e_mail}>'
+        return f'Name:{self.name}, Surname:{self.surname},e-mail:<{self.email}>'
         
     
 
@@ -27,8 +27,22 @@ list.append(contact3)
 list.append(contact4)
 list.append(contact5)
 
-def display_list():
-    for x in list:
+by_name=sorted(list, key=lambda x: x.name)
+by_surname=sorted(list, key=lambda x: x.surname)
+by_email=sorted(list, key=lambda x: x.email)
+
+def display_list_by_name():
+    for x in by_name:
         print(x)
 
-display_list()
+def display_list_by_surname():
+    for x in by_surname:
+        print(x)
+
+def display_list_by_email():
+    for x in by_email:
+        print(x) 
+
+display_list_by_name()
+display_list_by_surname()
+display_list_by_email()
