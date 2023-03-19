@@ -1,3 +1,4 @@
+import this
 from faker import Faker
 
 
