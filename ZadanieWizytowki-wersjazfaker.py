@@ -15,7 +15,7 @@ class BaseContact:
     def __str__(self):
         return f"First name:{self.first_name}, Last name:{self.last_name}, phone:{self.phone_number}, e-mail:<{self.email}>"
 
-    def contact_private(self):
+    def contact(self):
         return f"Wybieram numer + 48 {self.phone_number} i dzwonię do {self.first_name} {self.last_name}"
 
     @property
@@ -63,34 +63,34 @@ def create_contacts(kind, quantity):
 
 
 
-def display_len():
+def display_len(list_BaseContact_faker):
     print("Length of name and surname:")
     for x in list_BaseContact_faker:
         print(f"{x.label_length}= {x.first_name} {x.last_name}")
 
 
-def display_contact_private():
+def display_contact_private(list_BaseContact_faker):
     print("List of private contacts from BaseContact list:")
     for x in list_BaseContact_faker:
-        print(x.contact_private())
-
-
-def display_contact_business():
-    print("List of BusinessContacts:")
-    for x in list_BusinessContact_faker:
         print(x.contact())
 
 
-def display_len_business():
+# def display_contact_business(list_BusinessContact_faker):
+#     print("List of BusinessContacts:")
+#     for x in list_BusinessContact_faker:
+#         print(x.contact())
+
+
+def display_len_business(list_BusinessContact_faker):
     print("Length of name and surname in BsinessContacts:")
     for x in list_BusinessContact_faker:
         print(f"{x.label_length}= {x.first_name} {x.last_name}")
 
 
-def display_contact_private_business():
+def display_contact_private_business(list_BusinessContact_faker):
     print("List of private contacts from BusinessContact list:")
     for x in list_BusinessContact_faker:
-        print(x.contact_private())
+        print(x.contact())
 
 
 if __name__ == "__main__":
@@ -112,14 +112,14 @@ if __name__ == "__main__":
     if kind == 1:
         print("\n\nInformation about people from BaseContact list:")
         print("\n---------------------------------------------------")
-        display_contact_private()
+        display_contact_private(list_BaseContact_faker)
         print("\n---------------------------------------------------")
-        display_len()
+        display_len(list_BaseContact_faker)
     elif kind == 2:
         print("\nInformation about people from BusinessContact list:")
         print("\n---------------------------------------------------")
-        display_contact_private_business()
+        display_contact_private_business(list_BusinessContact_faker)
         print("\n---------------------------------------------------")
-        display_contact_business()
+        # display_contact_business(list_BusinessContact_faker)
         print("\n---------------------------------------------------")
-        display_len_business()
+        display_len_business(list_BusinessContact_faker)
