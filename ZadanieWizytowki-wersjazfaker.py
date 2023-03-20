@@ -10,6 +10,7 @@ class BaseContact:
         self.last_name = last_name
         self.phone_number = phone_number
         self.email = email
+        self._length=len(self.first_name) + len(self.last_name) + 1
 
     def __str__(self):
         return f"First name:{self.first_name}, Last name:{self.last_name}, phone:{self.phone_number}, e-mail:<{self.email}>"
@@ -19,8 +20,7 @@ class BaseContact:
 
     @property
     def label_length(self):
-        len_ns = len(self.first_name) + len(self.last_name) + 1
-        return f"{len_ns} = {self.first_name} {self.last_name}"
+        return self._length
 
 
 class BusinessContact(BaseContact):
@@ -34,9 +34,6 @@ class BusinessContact(BaseContact):
         return f"Wybieram numer + 48 {self.work_phone} i dzwonię do {self.first_name} {self.last_name}"
 
 
-list_BaseContact_faker = []
-list_BusinessContact_faker = []
-
 
 def create_contacts(kind, quantity):
     if kind == 1:
@@ -48,9 +45,8 @@ def create_contacts(kind, quantity):
                 fake.email(),
             )
             list_BaseContact_faker.append(x)
-            # print(x)
-        return "Done!"
-    if kind == 2:
+            print(x)
+    elif kind == 2:
         for _ in range(quantity):
             y = BusinessContact(
                 first_name=fake.unique.first_name(),
@@ -62,14 +58,15 @@ def create_contacts(kind, quantity):
                 work_phone=fake.phone_number(),
             )
             list_BusinessContact_faker.append(y)
-            # print(y)
-        return "Done!"
+            print(y)
+    return 'Done!'
+
 
 
 def display_len():
     print("Length of name and surname:")
     for x in list_BaseContact_faker:
-        print(f"{x.label_length}")
+        print(f"{x.label_length}= {x.first_name} {x.last_name}")
 
 
 def display_contact_private():
@@ -87,7 +84,7 @@ def display_contact_business():
 def display_len_business():
     print("Length of name and surname in BsinessContacts:")
     for x in list_BusinessContact_faker:
-        print(f"{x.label_length}")
+        print(f"{x.label_length}= {x.first_name} {x.last_name}")
 
 
 def display_contact_private_business():
@@ -97,6 +94,8 @@ def display_contact_private_business():
 
 
 if __name__ == "__main__":
+    list_BaseContact_faker = []
+    list_BusinessContact_faker = []
     print(
         "\n\n---------------------------------------------------------------------------------------"
     )
@@ -109,14 +108,14 @@ if __name__ == "__main__":
     print(
         "\n\n---------------------------------------------------------------------------------------"
     )
-    create_contacts(kind, quantity)
+    print(create_contacts(kind, quantity))
     if kind == 1:
         print("\n\nInformation about people from BaseContact list:")
         print("\n---------------------------------------------------")
         display_contact_private()
         print("\n---------------------------------------------------")
         display_len()
-    if kind == 2:
+    elif kind == 2:
         print("\nInformation about people from BusinessContact list:")
         print("\n---------------------------------------------------")
         display_contact_private_business()
